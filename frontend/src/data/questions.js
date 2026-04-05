@@ -130,6 +130,7 @@ export const aptitudeQuestions = {
  */
 export const getTestPlan = (classLevel) => {
     if (classLevel === '10th') {
+        // 10th graders: Explore broad streams to find best fit
         return {
             phases: [
                 { key: 'logical', label: '🧠 Logical Reasoning', icon: '🧩', questions: aptitudeQuestions.logical },
@@ -139,18 +140,21 @@ export const getTestPlan = (classLevel) => {
                 { key: 'diploma', label: '🔧 Diploma / Vocational', icon: '⚙️', questions: aptitudeQuestions.diploma },
             ],
             totalQuestions: 50,
-            description: 'Explore all career streams to discover your perfect fit.'
+            description: 'Explore all career streams — Science, Commerce, Arts & Diploma — to discover your perfect fit.'
         };
     } else {
+        // 12th graders: Deep-dive into ALL specializations equally
         return {
             phases: [
                 { key: 'logical', label: '🧠 Logical Reasoning', icon: '🧩', questions: aptitudeQuestions.logical },
-                { key: 'engineering', label: '⚙️ Engineering Deep-Dive', icon: '🔧', questions: aptitudeQuestions.engineering },
-                { key: 'medical', label: '🏥 Medical Deep-Dive', icon: '🩺', questions: aptitudeQuestions.medical },
-                { key: 'commerce', label: '💼 Commerce Specialization', icon: '📈', questions: aptitudeQuestions.commerce },
+                { key: 'engineering', label: '⚙️ Engineering', icon: '🔧', questions: aptitudeQuestions.engineering },
+                { key: 'medical', label: '🏥 Medical', icon: '🩺', questions: aptitudeQuestions.medical },
+                { key: 'commerce', label: '💼 Commerce', icon: '📈', questions: aptitudeQuestions.commerce },
+                { key: 'arts', label: '🎨 Arts & Humanities', icon: '📜', questions: aptitudeQuestions.arts },
+                { key: 'diploma', label: '🔧 Diploma / Vocational', icon: '⚙️', questions: aptitudeQuestions.diploma },
             ],
-            totalQuestions: 40,
-            description: 'Specialized assessment to refine your career trajectory.'
+            totalQuestions: 60,
+            description: 'In-depth assessment across Engineering, Medical, Commerce, Arts & Diploma to pinpoint your ideal specialization.'
         };
     }
 };
