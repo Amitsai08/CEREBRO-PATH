@@ -22,9 +22,17 @@ const Dashboard = () => {
     const fetchDashboardData = async () => {
         try {
             const recommendedPath = studentProfile?.prediction?.recommended_path;
+            
+            // Get location preference
+            let districtFilter = studentProfile?.preferences?.preferred_location || studentProfile?.district || '';
+            if (studentProfile?.preferences?.preferred_districts && studentProfile.preferences.preferred_districts.length > 0) {
+                districtFilter = studentProfile.preferences.preferred_districts[0];
+            }
+
             const res = await axios.get(`${API_BASE_URL}/colleges`, {
                 params: { 
                     course: recommendedPath?.split(' / ')[0] || '',
+                    district: districtFilter,
                     limit: 6
                 }
             });

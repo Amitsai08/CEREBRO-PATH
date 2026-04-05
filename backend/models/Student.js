@@ -40,11 +40,13 @@ const studentSchema = new mongoose.Schema({
     },
 
     preferences: {
-        preferred_districts: [String],
+        preferred_location: { type: String },
+        preferred_districts: [{ type: String }],
         preferred_colleges: [{
             type: mongoose.Schema.Types.ObjectId,
             ref: 'College'
-        }]
+        }],
+        budget_range: { type: String }
     }
 }, { timestamps: true });
 

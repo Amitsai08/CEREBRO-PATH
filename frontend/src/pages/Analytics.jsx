@@ -273,8 +273,13 @@ const Analytics = () => {
                         <h4 className="text-sm font-black uppercase tracking-widest text-career-primary mb-4">Top Hubs in {selectedDistrict}</h4>
                         <div className="space-y-4 max-h-[300px] overflow-y-auto pr-2 custom-scrollbar">
                             {locations?.locations.slice(0, 10).map((loc, i) => (
-                                <div key={i} className="p-3 bg-white/5 rounded-xl border border-white/5 hover:border-career-primary/30 transition-all cursor-alias">
-                                    <p className="text-xs font-bold leading-tight">{loc.name}</p>
+                                <div 
+                                    key={i} 
+                                    onClick={() => window.open(`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(loc.name + ' ' + selectedDistrict + ' college')}`, '_blank')}
+                                    className="p-3 bg-white/5 rounded-xl border border-white/5 hover:border-career-primary/30 transition-all cursor-pointer group"
+                                    title="Click to open in Google Maps"
+                                >
+                                    <p className="text-xs font-bold leading-tight group-hover:text-career-primary transition-colors">{loc.name}</p>
                                     <p className="text-[10px] text-white/30 mt-1 uppercase tracking-tighter">{loc.type}</p>
                                 </div>
                             ))}
