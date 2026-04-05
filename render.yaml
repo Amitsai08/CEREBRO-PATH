@@ -10,7 +10,7 @@ services:
       - key: NODE_ENV
         value: production
       - key: MONGO_URI
-        fromConfigVar: MONGO_URI
+        sync: false
       - key: JWT_SECRET
         generateValue: true
       - key: GROQ_API_KEY
