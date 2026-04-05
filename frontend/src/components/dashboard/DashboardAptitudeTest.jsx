@@ -88,8 +88,24 @@ const DashboardAptitudeTest = ({ onComplete }) => {
                 <div className="w-24 h-24 rounded-full bg-green-500/20 flex items-center justify-center text-5xl mx-auto mb-6">✅</div>
                 <h3 className="text-4xl font-display font-bold mb-4">Assessment Complete!</h3>
                 <p className="text-white/60 mb-8 max-w-lg mx-auto">
-                    Your scores have been updated and our AI is analyzing your profile. Check your new career recommendations below.
+                    Your scores have been updated and our AI is analyzing your profile. Let us examine your results.
                 </p>
+
+                {studentProfile?.prediction?.recommended_path && studentProfile.prediction.recommended_path !== 'Undecided' && (
+                    <motion.div 
+                        initial={{ scale: 0.9, opacity: 0 }}
+                        animate={{ scale: 1, opacity: 1 }}
+                        className="mb-10 inline-block p-[2px] rounded-2xl bg-gradient-to-r from-career-primary via-blue-500 to-career-secondary shadow-[0_0_30px_rgba(var(--career-primary-rgb),0.4)]"
+                    >
+                        <div className="bg-career-dark px-10 py-6 rounded-[14px]">
+                            <p className="text-xs text-white/50 uppercase font-black tracking-widest mb-2">Calculated Trajectory</p>
+                            <h2 className="text-3xl font-display font-bold text-transparent bg-clip-text bg-gradient-to-r from-white to-white/70">
+                                {studentProfile.prediction.recommended_path}
+                            </h2>
+                        </div>
+                    </motion.div>
+                )}
+
                 <div className="grid grid-cols-2 gap-4 max-w-sm mx-auto mb-10">
                     <div className="p-4 bg-white/5 rounded-2xl border border-white/10">
                         <p className="text-xs text-white/40 uppercase font-bold tracking-widest mb-1">Logical</p>

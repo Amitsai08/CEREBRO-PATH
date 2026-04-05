@@ -1,5 +1,6 @@
 import Student from '../models/Student.js';
 import generateToken from '../utils/generateToken.js';
+import axios from 'axios';
 
 // @desc    Get student profile by Firebase UID
 // @route   GET /api/students/:uid
@@ -181,22 +182,60 @@ export const updateAptitudeScores = async (req, res) => {
     student.aptitude_scores.science_score = science_score ?? student.aptitude_scores.science_score;
     student.aptitude_scores.commerce_score = commerce_score ?? student.aptitude_scores.commerce_score;
 
-    // Automated Prediction Logic
+    // Automated Prediction Logic (Strict Categorization)
     const avgScore = (student.aptitude_scores.logical_score + 
                      (student.aptitude_scores.science_score || student.aptitude_scores.commerce_score)) / 2;
     
-    let path = 'Undecided';
+    const is12th = student.academic_info?.class_level === '12th';
+    const hasSci = student.aptitude_scores.science_score > 0;
+    
+    let path = 'Science'; // Default
     let insight = 'Keep exploring your options.';
 
-    if (student.aptitude_scores.science_score > 70) {
-        path = 'Science / Engineering';
-        insight = 'Strong analytical skills detected. You excel in structured problem-solving.';
+    // Base Heuristic Logic
+    if (student.aptitude_scores.science_score > 80 && student.aptitude_scores.logical_score > 80) {
+        path = is12th ? 'Engineering' : 'Science';
+        insight = 'High logical and science aptitude points heavily toward technical fields.';
+    } else if (student.aptitude_scores.science_score > 70 && student.aptitude_scores.reaction_score > 70) {
+        path = is12th ? 'Medical' : 'Science';
+        insight = 'Strong life sciences and reaction time suits healthcare fields.';
     } else if (student.aptitude_scores.commerce_score > 70) {
-        path = 'Commerce / Management';
-        insight = 'Great business acumen. Your ability to understand economic patterns is impressive.';
-    } else if (student.aptitude_scores.logical_score > 80) {
-        path = 'Data Science / Logic';
-        insight = 'Your logical reasoning is top-tier. Consider paths in AI or pure mathematics.';
+        path = 'Commerce';
+        insight = 'Great business acumen detected.';
+    } else if (student.aptitude_scores.creativity_score > 80 && student.aptitude_scores.logical_score < 60) {
+        path = 'Arts';
+        insight = 'Your creativity metrics are off the charts. Consider design or humanities.';
+    } else if (student.aptitude_scores.logical_score < 50 && student.aptitude_scores.science_score < 50) {
+        path = 'Fine Arts/Vocational';
+        insight = 'Your profile is highly unique and practical.';
+    } else if (avgScore > 50 && avgScore < 70) {
+         path = 'Diploma';
+         insight = 'A practical diploma might be the fastest track to a stable career for your profile.';
+    }
+
+    // Groq AI Override for absolute accuracy (if API key provided)
+    if (process.env.GROQ_API_KEY && process.env.GROQ_API_KEY !== 'gsk_PLACEHOLDER_ADD_YOUR_KEY_HERE') {
+        try {
+            const aiPrompt = `Analyze scores: Logic=${student.aptitude_scores.logical_score}, Science=${student.aptitude_scores.science_score}, Commerce=${student.aptitude_scores.commerce_score}, Creativity=${student.aptitude_scores.creativity_score}. Class: ${student.academic_info?.class_level}. 
+            Return exactly ONE label from this list strictly based on best fit: [Science, Commerce, Arts, Engineering, Medical, Diploma, Fine Arts/Vocational]. No quotes or extra text.`;
+
+            const aiRes = await axios.post('https://api.groq.com/openai/v1/chat/completions', {
+                model: 'gemma2-9b-it',
+                messages: [{ role: 'user', content: aiPrompt }],
+                temperature: 0.2, // Low temp for strict adherence
+                max_tokens: 15
+            }, { headers: { 'Authorization': `Bearer ${process.env.GROQ_API_KEY}` }, timeout: 4000 });
+            
+            const aiLabel = aiRes.data.choices[0].message.content.trim().replace(/['"]/g, '');
+            const allowedLabels = ["Science", "Commerce", "Arts", "Engineering", "Medical", "Diploma", "Fine Arts/Vocational"];
+            
+            if (allowedLabels.includes(aiLabel)) {
+                path = aiLabel;
+                insight = 'Powered by highly accurate Groq AI profiling.';
+            }
+        } catch (e) {
+            console.error("Groq Aptitude failure, falling back to heuristic", e.message);
+        }
     }
 
     student.prediction = {

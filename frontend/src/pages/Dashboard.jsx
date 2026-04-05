@@ -135,7 +135,18 @@ const Dashboard = () => {
 
                       <div className="glass-card p-10 flex flex-col gap-10 bg-gradient-to-br from-career-primary/10 via-transparent to-transparent border border-career-primary/20 relative overflow-hidden">
                           <div className="absolute top-0 right-0 w-32 h-32 bg-career-primary/10 blur-[60px] rounded-full" />
-                          <h3 className="text-2xl font-bold">Assessment</h3>
+                          
+                          {/* Recommended Path Banner */}
+                          {studentProfile?.prediction?.recommended_path && studentProfile.prediction.recommended_path !== 'Undecided' && (
+                              <div className="p-4 bg-gradient-to-r from-career-primary/20 to-transparent border-l-4 border-career-primary rounded-r-xl">
+                                  <p className="text-[10px] text-white/50 uppercase font-black tracking-[0.2em] mb-1">🏆 AI Recommended Path</p>
+                                  <h3 className="text-2xl font-display font-bold text-white shadow-sm shadow-career-primary/30">
+                                      {studentProfile.prediction.recommended_path}
+                                  </h3>
+                              </div>
+                          )}
+
+                          <h3 className="text-xl font-bold">Assessment Metrics</h3>
                           <div className="space-y-8">
                               <ScoreProgress label="Logic Index" score={studentProfile?.aptitude_scores?.logical_score} color="bg-career-primary" />
                               <ScoreProgress 
