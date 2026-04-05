@@ -10,7 +10,7 @@ const Home = () => {
         <div 
           className="absolute inset-0 z-0 scale-105 animate-subtle-zoom"
           style={{ 
-            backgroundImage: `linear-gradient(to bottom, rgba(13, 14, 18, 0.4), rgba(13, 14, 18, 0.95)), url('/brain/46ffb441-9eb0-428f-9211-b8053f4d7acf/career_hero_bg_1773680788198.png')`,
+            backgroundImage: `linear-gradient(135deg, rgba(13, 14, 18, 0.3) 0%, rgba(59, 130, 246, 0.08) 40%, rgba(139, 92, 246, 0.06) 70%, rgba(13, 14, 18, 0.95) 100%)`,
             backgroundSize: 'cover',
             backgroundPosition: 'center'
           }}

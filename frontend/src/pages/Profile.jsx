@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { useAuth } from '../context/AuthContext';
 import axios from 'axios';
+import API_BASE_URL from '../api/config';
 
 const Profile = () => {
   const { user, studentProfile, setStudentProfile } = useAuth();
@@ -44,7 +45,7 @@ const Profile = () => {
           preferred_districts: form.preferred_districts.split(',').map(s => s.trim()).filter(Boolean),
         },
       };
-      const res = await axios.post('http://localhost:5000/api/students', payload);
+      const res = await axios.post(`${API_BASE_URL}/students`, payload);
       setStudentProfile(res.data);
       setStep(3); // success
     } catch (err) {

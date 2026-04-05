@@ -3,6 +3,7 @@ import { useParams, useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import axios from 'axios';
 import { useAuth } from '../context/AuthContext';
+import API_BASE_URL from '../api/config';
 
 const questions10th = [
   {
@@ -132,7 +133,7 @@ const Questionnaire = () => {
     if (!useAI) return null;
     setAiLoading(true);
     try {
-      const res = await axios.post('http://localhost:5000/api/ai/next-question', {
+      const res = await axios.post(`${API_BASE_URL}/ai/next-question`, {
         studentProfile: { grade },
         currentAnswers,
         grade
@@ -193,7 +194,8 @@ const Questionnaire = () => {
 
     try {
       const endpoint = grade === '12th' ? '/api/recommend/course' : '/api/recommend/stream';
-      const mlRes = await axios.post(`http://localhost:8000${endpoint}`, {
+      const mlBaseUrl = import.meta.env.VITE_ML_BASE_URL || 'http://localhost:8000';
+      const mlRes = await axios.post(`${mlBaseUrl}${endpoint}`, {
         answers: allAnswers,
         grade
       });
@@ -209,7 +211,7 @@ const Questionnaire = () => {
     // Save to our backend
     if (user) {
       try {
-        const res = await axios.post(`http://localhost:5000/api/students/${user.uid}/questionnaire`, {
+        const res = await axios.post(`${API_BASE_URL}/students/${user.uid}/questionnaire`, {
           grade,
           answers: allAnswers,
           recommended_stream: grade === '10th' ? finalResult.primary : null,

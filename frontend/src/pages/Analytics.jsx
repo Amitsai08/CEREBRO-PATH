@@ -4,10 +4,11 @@ import axios from 'axios';
 import { Chart as ChartJS, CategoryScale, LinearScale, BarElement, ArcElement, PointElement, LineElement, Title, Tooltip, Legend, Filler } from 'chart.js';
 import { Bar, Doughnut, Line } from 'react-chartjs-2';
 import { useAuth } from '../context/AuthContext';
+import API_BASE_URL from '../api/config';
 
 ChartJS.register(CategoryScale, LinearScale, BarElement, ArcElement, PointElement, LineElement, Title, Tooltip, Legend, Filler);
 
-const API_BASE = 'http://localhost:5000/api/external';
+const API_BASE = `${API_BASE_URL}/external`;
 
 const Analytics = () => {
   const { studentProfile } = useAuth();

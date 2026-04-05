@@ -5,6 +5,7 @@ import axios from 'axios';
 import { Chart as ChartJS, CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend } from 'chart.js';
 import { Bar } from 'react-chartjs-2';
 import { useAuth } from '../context/AuthContext';
+import API_BASE_URL from '../api/config';
 import DashboardAptitudeTest from '../components/dashboard/DashboardAptitudeTest';
 import AIChatModal from '../components/dashboard/AIChatModal';
 
@@ -21,7 +22,7 @@ const Dashboard = () => {
     const fetchDashboardData = async () => {
         try {
             const recommendedPath = studentProfile?.prediction?.recommended_path;
-            const res = await axios.get('http://localhost:5000/api/colleges', {
+            const res = await axios.get(`${API_BASE_URL}/colleges`, {
                 params: { 
                     course: recommendedPath?.split(' / ')[0] || '',
                     limit: 6
@@ -262,7 +263,7 @@ const AICounselorCard = ({ profile, onChatClick }) => {
 
         const fetchInsight = async () => {
             try {
-                const res = await axios.post('http://localhost:5000/api/ai/insight', {
+                const res = await axios.post(`${API_BASE_URL}/ai/insight`, {
                     studentProfile: profile,
                     quizResults: profile?.aptitude_scores
                 });
