@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
@@ -254,7 +254,7 @@ const AICounselorCard = ({ profile, onChatClick }) => {
     const [insight, setInsight] = useState('');
     const [loading, setLoading] = useState(true);
 
-    useEffect(() => {
+    React.useEffect(() => {
         if (profile?.prediction?.insights) {
             setInsight(profile.prediction.insights);
             setLoading(false);

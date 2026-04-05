@@ -211,6 +211,20 @@ export const updateAptitudeScores = async (req, res) => {
     const student = await Student.findOne({ uid: req.params.uid });
     if (!student) return res.status(404).json({ message: 'Student not found' });
 
+    if (!student.aptitude_scores) {
+      student.aptitude_scores = {
+        logical_score: 0, analytical_score: 0, creativity_score: 0,
+        reaction_score: 0, science_score: 0, commerce_score: 0
+      };
+    }
+
+    if (!student.aptitude_scores) {
+      student.aptitude_scores = {
+        logical_score: 0, analytical_score: 0, creativity_score: 0,
+        reaction_score: 0, science_score: 0, commerce_score: 0
+      };
+    }
+
     student.aptitude_scores.logical_score = logical_score ?? student.aptitude_scores.logical_score;
     student.aptitude_scores.analytical_score = analytical_score ?? student.aptitude_scores.analytical_score;
     student.aptitude_scores.creativity_score = creativity_score ?? student.aptitude_scores.creativity_score;
