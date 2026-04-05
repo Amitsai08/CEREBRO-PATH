@@ -24,19 +24,34 @@ export const loginStudent = async (req, res) => {
     const { email, password } = req.body;
     const student = await Student.findOne({ email });
 
-    if (student && (await student.matchPassword(password))) {
+    if (!student) {
+      return res.status(401).json({ message: 'No account found. Please sign up first.' });
+    }
+
+    // Handle old accounts that were created before JWT migration (no password)
+    if (!student.password) {
+      return res.status(401).json({ message: 'This account needs to be re-registered. Please use Sign Up.' });
+    }
+
+    const isMatch = await student.matchPassword(password);
+    if (isMatch) {
       res.json({
         _id: student._id,
         uid: student.uid,
         name: student.name,
         email: student.email,
         role: student.role,
+        academic_info: student.academic_info,
+        aptitude_scores: student.aptitude_scores,
+        prediction: student.prediction,
+        interests: student.interests,
         token: generateToken(student._id),
       });
     } else {
       res.status(401).json({ message: 'Invalid email or password' });
     }
   } catch (error) {
+    console.error('Login error:', error);
     res.status(500).json({ message: 'Server Error', error: error.message });
   }
 };
@@ -49,8 +64,25 @@ export const registerStudent = async (req, res) => {
     
     // Check if user exists
     const studentExists = await Student.findOne({ email });
+    
+    // If account exists but has no password (pre-JWT migration), update it
+    if (studentExists && !studentExists.password) {
+      studentExists.password = password;
+      studentExists.name = name || studentExists.name;
+      await studentExists.save();
+      return res.status(201).json({
+        _id: studentExists._id,
+        uid: studentExists.uid,
+        name: studentExists.name,
+        email: studentExists.email,
+        role: studentExists.role,
+        academic_info: studentExists.academic_info,
+        token: generateToken(studentExists._id),
+      });
+    }
+    
     if (studentExists) {
-      return res.status(400).json({ message: 'Student already exists' });
+      return res.status(400).json({ message: 'Account already exists. Please login instead.' });
     }
 
     // Generate custom internal UID for backward compatibility
