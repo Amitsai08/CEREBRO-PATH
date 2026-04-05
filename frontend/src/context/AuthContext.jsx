@@ -1,7 +1,7 @@
 import { createContext, useContext, useState, useEffect } from 'react';
 import axios from 'axios';
+import API_BASE_URL from '../api/config';
 
-const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000/api';
 const AuthContext = createContext(null);
 
 export const useAuth = () => useContext(AuthContext);
@@ -74,7 +74,7 @@ export const AuthProvider = ({ children }) => {
   const login = async (email, password) => {
     setLoading(true);
     try {
-      const res = await axios.post(`${API_URL}/students/login`, {
+      const res = await axios.post(`${API_BASE_URL}/students/login`, {
         email,
         password
       });
@@ -107,7 +107,7 @@ export const AuthProvider = ({ children }) => {
   const signup = async (email, password, name) => {
     setLoading(true);
     try {
-        const res = await axios.post(`${API_URL}/students/register`, {
+        const res = await axios.post(`${API_BASE_URL}/students/register`, {
             email,
             password,
             name: name || email.split('@')[0],
