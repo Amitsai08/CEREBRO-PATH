@@ -21,6 +21,24 @@ const Profile = () => {
     preferred_districts: studentProfile?.preferences?.preferred_districts?.join(', ') || '',
   });
 
+  // Sync form with profile if it updates elsewhere
+  useEffect(() => {
+    if (studentProfile) {
+      setForm({
+        name: studentProfile.name || '',
+        email: studentProfile.email || '',
+        district: studentProfile.district || '',
+        category: studentProfile.category || '',
+        class_level: studentProfile.academic_info?.class_level || '10th',
+        marks_percentile: studentProfile.academic_info?.marks_percentile || '',
+        subjects: studentProfile.academic_info?.subjects?.join(', ') || '',
+        preferred_stream: studentProfile.interests?.preferred_stream || '',
+        career_interests: studentProfile.interests?.career_interests?.join(', ') || '',
+        preferred_districts: studentProfile.preferences?.preferred_districts?.join(', ') || '',
+      });
+    }
+  }, [studentProfile]);
+
   const update = (key, val) => setForm({ ...form, [key]: val });
 
   const handleSave = async () => {
@@ -48,6 +66,11 @@ const Profile = () => {
       const res = await axios.post(`${API_BASE_URL}/students`, payload);
       setStudentProfile(res.data);
       setStep(3); // success
+      
+      // Auto-redirect to appropriate questionnaire after a short delay
+      setTimeout(() => {
+        window.location.href = `/questionnaire/${form.class_level}`;
+      }, 1500);
     } catch (err) {
       console.error(err);
     }

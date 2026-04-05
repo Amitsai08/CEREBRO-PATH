@@ -214,47 +214,50 @@ export const updateAptitudeScores = async (req, res) => {
     student.aptitude_scores.science_score = science_score ?? student.aptitude_scores.science_score;
     student.aptitude_scores.commerce_score = commerce_score ?? student.aptitude_scores.commerce_score;
 
-    // Automated Prediction Logic (Strict Categorization)
+    // Automated Prediction Logic (Enhanced Heuristic)
     const avgScore = (student.aptitude_scores.logical_score + 
                      (student.aptitude_scores.science_score || student.aptitude_scores.commerce_score)) / 2;
     
     const is12th = student.academic_info?.class_level === '12th';
-    const hasSci = student.aptitude_scores.science_score > 0;
+    const percentile = student.academic_info?.marks_percentile || 0;
+    const preferredStream = student.interests?.preferred_stream || '';
     
     let path = 'Science'; // Default
-    let insight = 'Keep exploring your options.';
+    let insight = 'Keep exploring your options based on your unique profile.';
 
-    // Base Heuristic Logic
+    // Enhanced Heuristic Logic incorporating Profile Data
     if (student.aptitude_scores.science_score > 80 && student.aptitude_scores.logical_score > 80) {
         path = is12th ? 'Engineering' : 'Science';
-        insight = 'High logical and science aptitude points heavily toward technical fields.';
+        insight = `Strong ${path} profile. With a ${percentile}% percentile, you have excellent chances in top-tier institutions.`;
     } else if (student.aptitude_scores.science_score > 70 && student.aptitude_scores.reaction_score > 70) {
         path = is12th ? 'Medical' : 'Science';
-        insight = 'Strong life sciences and reaction time suits healthcare fields.';
-    } else if (student.aptitude_scores.commerce_score > 70) {
+        insight = 'Strong life sciences aptitude. Your interest in health-sector fits your profile well.';
+    } else if (student.aptitude_scores.commerce_score > 70 || preferredStream === 'Commerce') {
         path = 'Commerce';
-        insight = 'Great business acumen detected.';
-    } else if (student.aptitude_scores.creativity_score > 80 && student.aptitude_scores.logical_score < 60) {
-        path = 'Arts';
-        insight = 'Your creativity metrics are off the charts. Consider design or humanities.';
-    } else if (student.aptitude_scores.logical_score < 50 && student.aptitude_scores.science_score < 50) {
-        path = 'Fine Arts/Vocational';
-        insight = 'Your profile is highly unique and practical.';
-    } else if (avgScore > 50 && avgScore < 70) {
-         path = 'Diploma';
-         insight = 'A practical diploma might be the fastest track to a stable career for your profile.';
+        insight = 'Analytical business metrics detected. Professional courses like CA/CS are highly recommended.';
+    } else if (student.aptitude_scores.creativity_score > 80) {
+        path = 'Arts/Design';
+        insight = 'Exceptional creativity metrics. Consider high-end design or humanities pathways.';
+    } else if (avgScore < 60 && percentile > 70) {
+        path = 'Diploma / Vocational';
+        insight = 'Your profile suggests a practical, skill-oriented pathway like specialized Diploma programs.';
     }
 
-    // Groq AI Override for absolute accuracy (if API key provided)
+    // Groq AI Override for absolute accuracy (Forecasting based on Profile + Test)
     if (process.env.GROQ_API_KEY && process.env.GROQ_API_KEY !== 'gsk_PLACEHOLDER_ADD_YOUR_KEY_HERE') {
         try {
-            const aiPrompt = `Analyze scores: Logic=${student.aptitude_scores.logical_score}, Science=${student.aptitude_scores.science_score}, Commerce=${student.aptitude_scores.commerce_score}, Creativity=${student.aptitude_scores.creativity_score}. Class: ${student.academic_info?.class_level}. 
-            Return exactly ONE label from this list strictly based on best fit: [Science, Commerce, Arts, Engineering, Medical, Diploma, Fine Arts/Vocational]. No quotes or extra text.`;
+            const aiPrompt = `
+            Analyze this student's combined profile for career forecasting:
+            - Aptitude: Logic=${student.aptitude_scores.logical_score}, Science=${student.aptitude_scores.science_score}, Commerce=${student.aptitude_scores.commerce_score}, Creativity=${student.aptitude_scores.creativity_score}
+            - Academic: Class=${student.academic_info?.class_level}, Percentile=${percentile}%, Subjects=${student.academic_info?.subjects?.join(', ')}
+            - Interests: Preferred Stream=${preferredStream}
+            
+            Return exactly ONE label from this list strictly: [Science, Commerce, Arts, Engineering, Medical, Diploma, Fine Arts/Vocational]. No quotes.`;
 
             const aiRes = await axios.post('https://api.groq.com/openai/v1/chat/completions', {
                 model: 'llama-3.1-8b-instant',
                 messages: [{ role: 'user', content: aiPrompt }],
-                temperature: 0.2, // Low temp for strict adherence
+                temperature: 0.2,
                 max_tokens: 15
             }, { headers: { 'Authorization': `Bearer ${process.env.GROQ_API_KEY}` }, timeout: 4000 });
             
@@ -263,10 +266,10 @@ export const updateAptitudeScores = async (req, res) => {
             
             if (allowedLabels.includes(aiLabel)) {
                 path = aiLabel;
-                insight = 'Powered by highly accurate Groq AI profiling.';
+                insight = `Forecasting based on ${student.academic_info?.class_level || 'current'} profile and assessment metrics suggests ${path} is your optimal destination.`;
             }
         } catch (e) {
-            console.error("Groq Aptitude failure, falling back to heuristic", e.message);
+            console.error("Forecasting AI failure, falling back to heuristic", e.message);
         }
     }
 

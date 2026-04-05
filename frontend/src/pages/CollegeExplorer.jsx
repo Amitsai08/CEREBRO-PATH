@@ -17,6 +17,17 @@ const CollegeExplorer = () => {
   const [district, setDistrict] = useState('');
   const [type, setType] = useState(queryParams.get('type') || '');
   const [course, setCourse] = useState('');
+  const [selectedCollege, setSelectedCollege] = useState(null);
+
+  // Initial fetch for a specific college if ID in URL
+  useEffect(() => {
+    const collegeId = queryParams.get('college');
+    if (collegeId) {
+        axios.get(`${API_BASE_URL}/colleges/${collegeId}`)
+            .then(res => setSelectedCollege(res.data))
+            .catch(err => console.error("Error fetching single college", err));
+    }
+  }, []);
 
   // Reset page when filters change
   useEffect(() => {
@@ -58,7 +69,80 @@ const CollegeExplorer = () => {
   }, [district, type, course, page]);
 
   return (
-    <div className="flex flex-col lg:flex-row gap-8 w-full min-h-[80vh]">
+    <div className="flex flex-col lg:flex-row gap-8 w-full min-h-[80vh] relative">
+        {/* Detail Modal */}
+        <AnimatePresence>
+            {selectedCollege && (
+                <motion.div 
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    exit={{ opacity: 0 }}
+                    className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm"
+                    onClick={() => setSelectedCollege(null)}
+                >
+                    <motion.div 
+                        initial={{ scale: 0.9, y: 20 }}
+                        animate={{ scale: 1, y: 0 }}
+                        exit={{ scale: 0.9, y: 20 }}
+                        className="glass-card max-w-4xl w-full p-8 md:p-12 relative overflow-hidden"
+                        onClick={e => e.stopPropagation()}
+                    >
+                        <div className="absolute top-0 right-0 w-64 h-64 bg-career-primary/10 blur-[100px] -z-10 rounded-full" />
+                        
+                        <button 
+                            onClick={() => setSelectedCollege(null)}
+                            className="absolute top-6 right-6 text-white/40 hover:text-white transition-colors"
+                        >
+                            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+                        </button>
+
+                        <div className="flex flex-col md:flex-row gap-10">
+                            <div className="flex-1">
+                                <div className="flex items-center gap-3 mb-4">
+                                    <span className="px-3 py-1 bg-career-primary/20 text-career-primary text-[10px] font-black uppercase tracking-widest rounded-lg border border-career-primary/30">
+                                        {selectedCollege.type} DESTINATION
+                                    </span>
+                                    <span className="text-xs text-white/40 font-mono">ID: {selectedCollege.institute_code}</span>
+                                </div>
+                                <h2 className="text-4xl font-display font-bold mb-6 leading-tight">{selectedCollege.college_name}</h2>
+                                
+                                <div className="space-y-6">
+                                    <div>
+                                        <h4 className="text-xs font-bold text-white/30 uppercase tracking-widest mb-3">Location & Environment</h4>
+                                        <div className="flex items-center gap-2 text-white/80">
+                                            <svg className="w-4 h-4 text-career-primary" fill="currentColor" viewBox="0 0 20 20"><path fillRule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clipRule="evenodd"></path></svg>
+                                            <span className="text-lg">{selectedCollege.district}, Maharashtra</span>
+                                        </div>
+                                    </div>
+
+                                    <div>
+                                        <h4 className="text-xs font-bold text-white/30 uppercase tracking-widest mb-3">Available Specializations</h4>
+                                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                                            {selectedCollege.courses.map((c, i) => (
+                                                <div key={i} className="p-4 bg-white/5 rounded-xl border border-white/10 group/item hover:border-career-primary/30 transition-all">
+                                                    <p className="text-sm font-bold text-white mb-1">{c.course_name}</p>
+                                                    <p className="text-[10px] text-career-primary font-black uppercase">Cutoff: {c.previous_cutoff || 'N/A'}%</p>
+                                                </div>
+                                            ))}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div className="w-full md:w-1/3 flex flex-col gap-6">
+                                <div className="p-6 bg-gradient-to-br from-career-primary/20 to-transparent rounded-[2rem] border border-career-primary/30 text-center">
+                                    <p className="text-xs font-bold text-white/50 uppercase mb-2">Admission Status</p>
+                                    <div className="text-2xl font-black text-white">OPEN 2026</div>
+                                    <div className="w-12 h-1 bg-career-primary mx-auto my-4 rounded-full" />
+                                    <button className="btn-primary w-full py-4 text-xs font-black uppercase tracking-widest rounded-xl">Apply Now</button>
+                                </div>
+                            </div>
+                        </div>
+                    </motion.div>
+                </motion.div>
+            )}
+        </AnimatePresence>
+
         {/* Sidebar Filters */}
         <aside className="w-full lg:w-1/4 glass-card p-6 h-fit sticky top-24">
             <h2 className="text-xl font-display font-bold mb-6 flex items-center gap-2">
@@ -128,7 +212,7 @@ const CollegeExplorer = () => {
         {/* Results Grid */}
         <main className="w-full lg:w-3/4 flex flex-col gap-6">
             <div className="flex justify-between items-end border-b border-white/10 pb-4">
-                <h1 className="text-3xl font-display font-bold">Directory</h1>
+                <h1 className="text-3xl font-display font-bold uppercase tracking-widest">MAP EXPLORER</h1>
                 <span className="text-sm text-white/50">{totalCount} institutions found</span>
             </div>
 
@@ -144,7 +228,7 @@ const CollegeExplorer = () => {
                 {colleges.map((college) => (
                     <motion.div 
                         key={college._id}
-                        onClick={() => alert(`Detailed view for ${college.college_name} coming soon!`)}
+                        onClick={() => setSelectedCollege(college)}
                         variants={{ hidden: { opacity: 0, scale: 0.95 }, show: { opacity: 1, scale: 1 } }}
                         className="glass-card p-6 flex flex-col h-full hover:shadow-career-primary/20 transition-all duration-300 relative overflow-hidden group cursor-pointer"
                     >
@@ -165,20 +249,16 @@ const CollegeExplorer = () => {
                         <p className="text-sm text-white/50 mb-4 font-mono relative z-10">CODE: {college.institute_code}</p>
                         
                         <div className="mt-auto space-y-2 relative z-10">
-                            <p className="text-xs text-white/70 font-semibold mb-2">Available Courses:</p>
+                            <p className="text-xs text-white/70 font-semibold mb-2 uppercase tracking-tighter">Destination specializations:</p>
                             {college.courses.slice(0, 3).map((c, idx) => (
                                 <div key={idx} className="flex justify-between items-center text-sm border-b border-white/5 pb-1">
                                     <span className="text-white/80 truncate pr-4">{c.course_name}</span>
-                                    <span className="text-career-accent font-medium whitespace-nowrap">
-                                        {c.previous_cutoff ? `${c.previous_cutoff}%ile` : 'N/A'}
+                                    <span className="text-career-accent font-medium whitespace-nowrap text-xs font-black">
+                                        {c.previous_cutoff ? `${c.previous_cutoff}%ILE` : 'N/A'}
                                     </span>
                                 </div>
                             ))}
-                            {college.courses.length > 3 && (
-                                <div className="text-xs text-center text-career-primary/80 mt-2 font-medium cursor-pointer hover:underline">
-                                    + {college.courses.length - 3} more courses
-                                </div>
-                            )}
+                            <div className="pt-2 text-[10px] text-career-primary font-black uppercase tracking-widest text-center">View Destination Detail →</div>
                         </div>
                     </motion.div>
                 ))}

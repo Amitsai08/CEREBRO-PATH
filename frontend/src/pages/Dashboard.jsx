@@ -140,7 +140,7 @@ const Dashboard = () => {
                           {/* Recommended Path Banner */}
                           {studentProfile?.prediction?.recommended_path && studentProfile.prediction.recommended_path !== 'Undecided' && (
                               <div className="p-4 bg-gradient-to-r from-career-primary/20 to-transparent border-l-4 border-career-primary rounded-r-xl">
-                                  <p className="text-[10px] text-white/50 uppercase font-black tracking-[0.2em] mb-1">🏆 AI Recommended Path</p>
+                                  <p className="text-[10px] text-white/50 uppercase font-black tracking-[0.2em] mb-1">🎯 RECOMMENDED DESTINATION</p>
                                   <h3 className="text-2xl font-display font-bold text-white shadow-sm shadow-career-primary/30">
                                       {studentProfile.prediction.recommended_path}
                                   </h3>
@@ -172,8 +172,8 @@ const Dashboard = () => {
                   <div>
                       <div className="flex justify-between items-center mb-10">
                           <div>
-                            <h3 className="text-3xl font-display font-bold">Curated Paths</h3>
-                            <p className="text-white/40 text-sm mt-1">Institutions aligned with your cognitive profile</p>
+                            <h3 className="text-3xl font-display font-bold uppercase tracking-widest">CURATED PATH</h3>
+                            <p className="text-white/40 text-sm mt-1">Institutions aligned with your cognitive forecasting</p>
                           </div>
                           <Link to="/explore" className="text-xs font-black text-career-primary uppercase tracking-[0.2em] border-b border-career-primary/50 pb-1 hover:text-white hover:border-white transition-all">Explore Map</Link>
                       </div>
@@ -306,7 +306,7 @@ const AICounselorCard = ({ profile, onChatClick }) => {
                     ) : (
                         <div>
                             <p className="text-2xl font-display font-medium text-white leading-relaxed italic mb-4">
-                                "{insight}"
+                                "{insight?.length > 150 ? insight.substring(0, 147) + "..." : insight}"
                             </p>
                             {profile?.prediction?.recommended_path && (
                                 <div className="inline-flex items-center gap-3 px-4 py-2 bg-career-primary/20 rounded-xl border border-career-primary/30">
