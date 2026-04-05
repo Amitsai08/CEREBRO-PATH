@@ -1,0 +1,63 @@
+graph TD
+    %% Styling
+    classDef frontend fill:#3b82f6,stroke:#1d4ed8,color:#fff,stroke-width:2px;
+    classDef backend fill:#8b5cf6,stroke:#6d28d9,color:#fff,stroke-width:2px;
+    classDef ai fill:#10b981,stroke:#047857,color:#fff,stroke-width:2px;
+    classDef data fill:#f59e0b,stroke:#d97706,color:#fff,stroke-width:2px;
+
+    subgraph "1. PRESENTATION LAYER (React + Vite)"
+        UI["Modern UI (Tailwind CSS 4 + Framer Motion)"]
+        Charts["Analytics Engine (Chart.js)"]
+        Context["Global State (AuthContext + ProfileContext)"]
+    end
+
+    subgraph "2. API GATEWAY & LOGIC (Node.js/Express)"
+        Auth["JWT Auth Middleware"]
+        StudentSvc["Student Lifecycle Controller"]
+        CollegeSvc["College/Geo Explorer Controller"]
+        ExternalSvc["Market Intelligence Proxy"]
+    end
+
+    subgraph "3. INTELLIGENCE ENGINE (Python/Flask)"
+        subgraph "Ensemble Forecasting"
+            RF["Random Forest (Primary)"]
+            DT["Decision Tree"]
+            LR["Logistic Regression"]
+            Voting{"Majority Voting"}
+        end
+        
+        subgraph "Cognitive Mapping"
+            KMeans["K-Means Clustering (Personas)"]
+            Apriori["Apriori (Interest Association)"]
+        end
+    end
+
+    subgraph "4. GEN-AI LAYER (LLM)"
+        Groq["Groq Cloud (Llama 3.1 - 8b - Instant)"]
+    end
+
+    subgraph "5. DATA PERSISTENCE (Cloud)"
+        DB[(MongoDB Atlas)]
+    end
+
+    %% Key Interactions
+    UI --> Context
+    Context <--> Auth
+    Auth --> StudentSvc & CollegeSvc
+    StudentSvc <--> DB
+    CollegeSvc <--> DB
+    
+    %% ML Integration
+    StudentSvc -- "Feature Vector" --> RF & DT & LR
+    RF & DT & LR --> Voting --> StudentSvc
+    StudentSvc -- "Trait Analysis" --> KMeans & Apriori
+    
+    %% AI Integration
+    StudentSvc -- "Profile Context" --> Groq
+    Groq -- "Human Insight" --> UI
+
+    %% Custom Labels
+    class UI,Charts,Context frontend;
+    class Auth,StudentSvc,CollegeSvc,ExternalSvc backend;
+    class RF,DT,LR,Voting,KMeans,Apriori,Groq ai;
+    class DB data;

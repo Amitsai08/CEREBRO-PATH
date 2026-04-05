@@ -196,6 +196,10 @@ export const saveQuestionnaireResults = async (req, res) => {
     if (grade === '12th' && recommended_courses) {
       student.interests.career_interests = recommended_courses;
     }
+    
+    // Fallback for old accounts without passwords to prevent Mongoose validation error
+    if (!student.password) student.password = student.uid;
+    
     await student.save();
     res.json({ message: 'Questionnaire results saved', student });
   } catch (error) {
@@ -302,6 +306,9 @@ export const updateAptitudeScores = async (req, res) => {
         confidence_score: Math.round(avgScore),
         insights: insight
     };
+
+    // Fallback for old accounts without passwords to prevent Mongoose validation error
+    if (!student.password) student.password = student.uid;
 
     await student.save();
     res.json({ 
