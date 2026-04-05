@@ -1,0 +1,6 @@
+scrapy
+pymongo
+pymongo[srv]
+python-dotenv
+pandas
+dnspython

@@ -1,0 +1,38 @@
+[
+{
+  "college_name": "College of Engineering Pune (COEP)",
+  "institute_code": "EN6006",
+  "district": "Pune",
+  "type": "Engineering",
+  "courses": [
+    {
+      "course_name": "Computer Engineering",
+      "seat_intake": 120,
+      "previous_cutoff": 99.8
+    },
+    {
+      "course_name": "Mechanical Engineering",
+      "seat_intake": 120,
+      "previous_cutoff": 98.5
+    }
+  ]
+},
+{
+  "college_name": "Veermata Jijabai Technological Institute (VJTI)",
+  "institute_code": "EN3012",
+  "district": "Mumbai",
+  "type": "Engineering",
+  "courses": [
+    {
+      "course_name": "Computer Engineering",
+      "seat_intake": 60,
+      "previous_cutoff": 99.9
+    },
+    {
+      "course_name": "Information Technology",
+      "seat_intake": 60,
+      "previous_cutoff": 99.5
+    }
+  ]
+}
+]

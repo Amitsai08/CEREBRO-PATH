@@ -1,0 +1,922 @@
+[
+  {
+    "college_name": "St. Xavier's College Mumbai",
+    "institute_code": "AC0001",
+    "district": "Mumbai",
+    "type": "Arts",
+    "courses": [
+      {
+        "course_name": "BA (Economics)",
+        "seat_intake": 120,
+        "previous_cutoff": 96.0
+      },
+      {
+        "course_name": "BA (English Literature)",
+        "seat_intake": 60,
+        "previous_cutoff": 92.0
+      },
+      {
+        "course_name": "BA (Political Science)",
+        "seat_intake": 60,
+        "previous_cutoff": 88.0
+      },
+      {
+        "course_name": "BCom",
+        "seat_intake": 240,
+        "previous_cutoff": 94.0
+      },
+      {
+        "course_name": "BSc (Statistics)",
+        "seat_intake": 60,
+        "previous_cutoff": 90.0
+      },
+      {
+        "course_name": "BMS (Management Studies)",
+        "seat_intake": 120,
+        "previous_cutoff": 95.0
+      }
+    ]
+  },
+  {
+    "college_name": "Jai Hind College",
+    "institute_code": "AC0002",
+    "district": "Mumbai",
+    "type": "Arts",
+    "courses": [
+      {
+        "course_name": "BA (Mass Media)",
+        "seat_intake": 60,
+        "previous_cutoff": 92.0
+      },
+      {
+        "course_name": "BCom",
+        "seat_intake": 240,
+        "previous_cutoff": 88.0
+      },
+      {
+        "course_name": "BMS",
+        "seat_intake": 120,
+        "previous_cutoff": 90.0
+      },
+      {
+        "course_name": "BA (Psychology)",
+        "seat_intake": 60,
+        "previous_cutoff": 88.0
+      }
+    ]
+  },
+  {
+    "college_name": "HR College of Commerce & Economics",
+    "institute_code": "AC0003",
+    "district": "Mumbai",
+    "type": "Arts",
+    "courses": [
+      {
+        "course_name": "BCom",
+        "seat_intake": 600,
+        "previous_cutoff": 92.0
+      },
+      {
+        "course_name": "BCom (Accounting & Finance)",
+        "seat_intake": 120,
+        "previous_cutoff": 94.0
+      },
+      {
+        "course_name": "BCom (Banking & Insurance)",
+        "seat_intake": 60,
+        "previous_cutoff": 88.0
+      },
+      {
+        "course_name": "BMS",
+        "seat_intake": 120,
+        "previous_cutoff": 90.0
+      },
+      {
+        "course_name": "BBA",
+        "seat_intake": 60,
+        "previous_cutoff": 85.0
+      }
+    ]
+  },
+  {
+    "college_name": "Fergusson College",
+    "institute_code": "AC0004",
+    "district": "Pune",
+    "type": "Arts",
+    "courses": [
+      {
+        "course_name": "BA (Economics)",
+        "seat_intake": 120,
+        "previous_cutoff": 90.0
+      },
+      {
+        "course_name": "BA (English)",
+        "seat_intake": 120,
+        "previous_cutoff": 82.0
+      },
+      {
+        "course_name": "BA (Sanskrit)",
+        "seat_intake": 60,
+        "previous_cutoff": 65.0
+      },
+      {
+        "course_name": "BCom",
+        "seat_intake": 180,
+        "previous_cutoff": 85.0
+      },
+      {
+        "course_name": "BSc (Physics)",
+        "seat_intake": 80,
+        "previous_cutoff": 88.0
+      },
+      {
+        "course_name": "BSc (Mathematics)",
+        "seat_intake": 80,
+        "previous_cutoff": 90.0
+      }
+    ]
+  },
+  {
+    "college_name": "Symbiosis College of Arts & Commerce",
+    "institute_code": "AC0005",
+    "district": "Pune",
+    "type": "Arts",
+    "courses": [
+      {
+        "course_name": "BA (Liberal Arts)",
+        "seat_intake": 120,
+        "previous_cutoff": 88.0
+      },
+      {
+        "course_name": "BCom",
+        "seat_intake": 240,
+        "previous_cutoff": 86.0
+      },
+      {
+        "course_name": "BBA",
+        "seat_intake": 120,
+        "previous_cutoff": 90.0
+      },
+      {
+        "course_name": "BCA",
+        "seat_intake": 60,
+        "previous_cutoff": 82.0
+      }
+    ]
+  },
+  {
+    "college_name": "Ruia College",
+    "institute_code": "AC0006",
+    "district": "Mumbai",
+    "type": "Arts",
+    "courses": [
+      {
+        "course_name": "BA (Hindi)",
+        "seat_intake": 60,
+        "previous_cutoff": 75.0
+      },
+      {
+        "course_name": "BA (History)",
+        "seat_intake": 60,
+        "previous_cutoff": 72.0
+      },
+      {
+        "course_name": "BA (Sociology)",
+        "seat_intake": 60,
+        "previous_cutoff": 78.0
+      },
+      {
+        "course_name": "BCom",
+        "seat_intake": 120,
+        "previous_cutoff": 80.0
+      }
+    ]
+  },
+  {
+    "college_name": "ILS Law College",
+    "institute_code": "AC0007",
+    "district": "Pune",
+    "type": "Arts",
+    "courses": [
+      {
+        "course_name": "BA LLB (5-year Integrated)",
+        "seat_intake": 120,
+        "previous_cutoff": 95.0
+      },
+      {
+        "course_name": "BLS LLB (5-year Integrated)",
+        "seat_intake": 60,
+        "previous_cutoff": 92.0
+      },
+      {
+        "course_name": "LLB (3-year)",
+        "seat_intake": 120,
+        "previous_cutoff": 80.0
+      }
+    ]
+  },
+  {
+    "college_name": "Government Law College Mumbai",
+    "institute_code": "AC0008",
+    "district": "Mumbai",
+    "type": "Arts",
+    "courses": [
+      {
+        "course_name": "BA LLB (5-year Integrated)",
+        "seat_intake": 120,
+        "previous_cutoff": 97.0
+      },
+      {
+        "course_name": "LLB (3-year)",
+        "seat_intake": 200,
+        "previous_cutoff": 85.0
+      }
+    ]
+  },
+  {
+    "college_name": "SNDT Women's University College",
+    "institute_code": "AC0009",
+    "district": "Mumbai",
+    "type": "Arts",
+    "courses": [
+      {
+        "course_name": "BA (Home Science)",
+        "seat_intake": 60,
+        "previous_cutoff": 65.0
+      },
+      {
+        "course_name": "BA (Education)",
+        "seat_intake": 60,
+        "previous_cutoff": 62.0
+      },
+      {
+        "course_name": "BCom",
+        "seat_intake": 120,
+        "previous_cutoff": 70.0
+      },
+      {
+        "course_name": "BCA",
+        "seat_intake": 40,
+        "previous_cutoff": 72.0
+      }
+    ]
+  },
+  {
+    "college_name": "Government College of Arts & Science Aurangabad",
+    "institute_code": "AC0010",
+    "district": "Aurangabad",
+    "type": "Arts",
+    "courses": [
+      {
+        "course_name": "BA (Marathi)",
+        "seat_intake": 120,
+        "previous_cutoff": 55.0
+      },
+      {
+        "course_name": "BA (History)",
+        "seat_intake": 120,
+        "previous_cutoff": 52.0
+      },
+      {
+        "course_name": "BCom",
+        "seat_intake": 240,
+        "previous_cutoff": 60.0
+      },
+      {
+        "course_name": "BSc (Chemistry)",
+        "seat_intake": 60,
+        "previous_cutoff": 65.0
+      }
+    ]
+  },
+  {
+    "college_name": "Hislop College Nagpur",
+    "institute_code": "AC0011",
+    "district": "Nagpur",
+    "type": "Arts",
+    "courses": [
+      {
+        "course_name": "BA (English)",
+        "seat_intake": 120,
+        "previous_cutoff": 75.0
+      },
+      {
+        "course_name": "BCom",
+        "seat_intake": 240,
+        "previous_cutoff": 72.0
+      },
+      {
+        "course_name": "BSc (Biotechnology)",
+        "seat_intake": 40,
+        "previous_cutoff": 78.0
+      },
+      {
+        "course_name": "BCA",
+        "seat_intake": 60,
+        "previous_cutoff": 70.0
+      }
+    ]
+  },
+  {
+    "college_name": "Narsee Monjee College of Commerce & Economics",
+    "institute_code": "AC0012",
+    "district": "Mumbai",
+    "type": "Arts",
+    "courses": [
+      {
+        "course_name": "BCom",
+        "seat_intake": 480,
+        "previous_cutoff": 90.0
+      },
+      {
+        "course_name": "BCom (Accounting & Finance)",
+        "seat_intake": 120,
+        "previous_cutoff": 92.0
+      },
+      {
+        "course_name": "BMS",
+        "seat_intake": 120,
+        "previous_cutoff": 88.0
+      },
+      {
+        "course_name": "BBA (International Business)",
+        "seat_intake": 60,
+        "previous_cutoff": 85.0
+      }
+    ]
+  },
+  {
+    "college_name": "College of Engineering Pune (COEP)",
+    "institute_code": "EN6006",
+    "district": "Pune",
+    "type": "Engineering",
+    "courses": [
+      {
+        "course_name": "Computer Engineering",
+        "seat_intake": 120,
+        "previous_cutoff": 99.8
+      },
+      {
+        "course_name": "Mechanical Engineering",
+        "seat_intake": 120,
+        "previous_cutoff": 98.5
+      }
+    ]
+  },
+  {
+    "college_name": "Veermata Jijabai Technological Institute (VJTI)",
+    "institute_code": "EN3012",
+    "district": "Mumbai",
+    "type": "Engineering",
+    "courses": [
+      {
+        "course_name": "Computer Engineering",
+        "seat_intake": 60,
+        "previous_cutoff": 99.9
+      },
+      {
+        "course_name": "Information Technology",
+        "seat_intake": 60,
+        "previous_cutoff": 99.5
+      }
+    ]
+  },
+  {
+    "college_name": "Grant Medical College & Sir JJ Group of Hospitals",
+    "institute_code": "MD0001",
+    "district": "Mumbai",
+    "type": "Medical",
+    "courses": [
+      {
+        "course_name": "MBBS",
+        "seat_intake": 200,
+        "previous_cutoff": 99.8
+      },
+      {
+        "course_name": "BDS",
+        "seat_intake": 40,
+        "previous_cutoff": 95.0
+      }
+    ]
+  },
+  {
+    "college_name": "Seth GS Medical College & KEM Hospital",
+    "institute_code": "MD0002",
+    "district": "Mumbai",
+    "type": "Medical",
+    "courses": [
+      {
+        "course_name": "MBBS",
+        "seat_intake": 200,
+        "previous_cutoff": 99.9
+      }
+    ]
+  },
+  {
+    "college_name": "B.J. Government Medical College Pune",
+    "institute_code": "MD0003",
+    "district": "Pune",
+    "type": "Medical",
+    "courses": [
+      {
+        "course_name": "MBBS",
+        "seat_intake": 200,
+        "previous_cutoff": 99.5
+      }
+    ]
+  },
+  {
+    "college_name": "Government Medical College Nagpur",
+    "institute_code": "MD0004",
+    "district": "Nagpur",
+    "type": "Medical",
+    "courses": [
+      {
+        "course_name": "MBBS",
+        "seat_intake": 200,
+        "previous_cutoff": 98.5
+      },
+      {
+        "course_name": "BDS",
+        "seat_intake": 40,
+        "previous_cutoff": 90.0
+      }
+    ]
+  },
+  {
+    "college_name": "Government Medical College Aurangabad",
+    "institute_code": "MD0005",
+    "district": "Aurangabad",
+    "type": "Medical",
+    "courses": [
+      {
+        "course_name": "MBBS",
+        "seat_intake": 150,
+        "previous_cutoff": 97.0
+      }
+    ]
+  },
+  {
+    "college_name": "Dr. Shankarrao Chavan Government Medical College Nanded",
+    "institute_code": "MD0006",
+    "district": "Nanded",
+    "type": "Medical",
+    "courses": [
+      {
+        "course_name": "MBBS",
+        "seat_intake": 150,
+        "previous_cutoff": 94.0
+      }
+    ]
+  },
+  {
+    "college_name": "Government Dental College & Hospital Mumbai",
+    "institute_code": "MD0007",
+    "district": "Mumbai",
+    "type": "Medical",
+    "courses": [
+      {
+        "course_name": "BDS",
+        "seat_intake": 80,
+        "previous_cutoff": 96.0
+      },
+      {
+        "course_name": "MDS (Orthodontics)",
+        "seat_intake": 10,
+        "previous_cutoff": 92.0
+      }
+    ]
+  },
+  {
+    "college_name": "Government Dental College Aurangabad",
+    "institute_code": "MD0008",
+    "district": "Aurangabad",
+    "type": "Medical",
+    "courses": [
+      {
+        "course_name": "BDS",
+        "seat_intake": 60,
+        "previous_cutoff": 88.0
+      }
+    ]
+  },
+  {
+    "college_name": "Government Ayurved College Nanded",
+    "institute_code": "MD0009",
+    "district": "Nanded",
+    "type": "Medical",
+    "courses": [
+      {
+        "course_name": "BAMS",
+        "seat_intake": 100,
+        "previous_cutoff": 75.0
+      }
+    ]
+  },
+  {
+    "college_name": "Tilak Ayurved Mahavidyalaya Pune",
+    "institute_code": "MD0010",
+    "district": "Pune",
+    "type": "Medical",
+    "courses": [
+      {
+        "course_name": "BAMS",
+        "seat_intake": 100,
+        "previous_cutoff": 82.0
+      }
+    ]
+  },
+  {
+    "college_name": "Dr. D.Y. Patil Medical College Navi Mumbai",
+    "institute_code": "MD0011",
+    "district": "Thane",
+    "type": "Medical",
+    "courses": [
+      {
+        "course_name": "MBBS",
+        "seat_intake": 150,
+        "previous_cutoff": 92.0
+      },
+      {
+        "course_name": "BDS",
+        "seat_intake": 100,
+        "previous_cutoff": 78.0
+      },
+      {
+        "course_name": "BPTh (Physiotherapy)",
+        "seat_intake": 50,
+        "previous_cutoff": 65.0
+      },
+      {
+        "course_name": "BOTh (Occupational Therapy)",
+        "seat_intake": 30,
+        "previous_cutoff": 58.0
+      }
+    ]
+  },
+  {
+    "college_name": "Smt. Kashibai Navale Medical College Pune",
+    "institute_code": "MD0012",
+    "district": "Pune",
+    "type": "Medical",
+    "courses": [
+      {
+        "course_name": "MBBS",
+        "seat_intake": 150,
+        "previous_cutoff": 90.0
+      }
+    ]
+  },
+  {
+    "college_name": "Government Homeopathic Medical College Mumbai",
+    "institute_code": "MD0013",
+    "district": "Mumbai",
+    "type": "Medical",
+    "courses": [
+      {
+        "course_name": "BHMS",
+        "seat_intake": 100,
+        "previous_cutoff": 70.0
+      }
+    ]
+  },
+  {
+    "college_name": "A.C.P.M. Medical College Dhule",
+    "institute_code": "MD0014",
+    "district": "Dhule",
+    "type": "Medical",
+    "courses": [
+      {
+        "course_name": "MBBS",
+        "seat_intake": 150,
+        "previous_cutoff": 85.0
+      },
+      {
+        "course_name": "BUMS (Unani)",
+        "seat_intake": 60,
+        "previous_cutoff": 55.0
+      }
+    ]
+  },
+  {
+    "college_name": "Government Medical College Kolhapur",
+    "institute_code": "MD0015",
+    "district": "Kolhapur",
+    "type": "Medical",
+    "courses": [
+      {
+        "course_name": "MBBS",
+        "seat_intake": 150,
+        "previous_cutoff": 95.0
+      }
+    ]
+  },
+  {
+    "college_name": "Bombay College of Pharmacy",
+    "institute_code": "PH0001",
+    "district": "Mumbai",
+    "type": "Pharmacy",
+    "courses": [
+      {
+        "course_name": "B.Pharm",
+        "seat_intake": 100,
+        "previous_cutoff": 95.0
+      },
+      {
+        "course_name": "M.Pharm (Pharmaceutics)",
+        "seat_intake": 20,
+        "previous_cutoff": 88.0
+      },
+      {
+        "course_name": "M.Pharm (Pharmacology)",
+        "seat_intake": 15,
+        "previous_cutoff": 85.0
+      }
+    ]
+  },
+  {
+    "college_name": "Institute of Chemical Technology (ICT)",
+    "institute_code": "PH0002",
+    "district": "Mumbai",
+    "type": "Pharmacy",
+    "courses": [
+      {
+        "course_name": "B.Pharm",
+        "seat_intake": 60,
+        "previous_cutoff": 97.0
+      },
+      {
+        "course_name": "B.Pharm (Hons)",
+        "seat_intake": 20,
+        "previous_cutoff": 98.0
+      }
+    ]
+  },
+  {
+    "college_name": "Poona College of Pharmacy",
+    "institute_code": "PH0003",
+    "district": "Pune",
+    "type": "Pharmacy",
+    "courses": [
+      {
+        "course_name": "B.Pharm",
+        "seat_intake": 120,
+        "previous_cutoff": 88.0
+      },
+      {
+        "course_name": "D.Pharm",
+        "seat_intake": 60,
+        "previous_cutoff": 72.0
+      }
+    ]
+  },
+  {
+    "college_name": "STES's Sinhgad College of Pharmacy",
+    "institute_code": "PH0004",
+    "district": "Pune",
+    "type": "Pharmacy",
+    "courses": [
+      {
+        "course_name": "B.Pharm",
+        "seat_intake": 120,
+        "previous_cutoff": 82.0
+      },
+      {
+        "course_name": "D.Pharm",
+        "seat_intake": 60,
+        "previous_cutoff": 65.0
+      },
+      {
+        "course_name": "M.Pharm (Quality Assurance)",
+        "seat_intake": 15,
+        "previous_cutoff": 78.0
+      }
+    ]
+  },
+  {
+    "college_name": "Maharashtra Institute of Pharmacy",
+    "institute_code": "PH0005",
+    "district": "Pune",
+    "type": "Pharmacy",
+    "courses": [
+      {
+        "course_name": "B.Pharm",
+        "seat_intake": 60,
+        "previous_cutoff": 80.0
+      },
+      {
+        "course_name": "D.Pharm",
+        "seat_intake": 60,
+        "previous_cutoff": 62.0
+      }
+    ]
+  },
+  {
+    "college_name": "Government College of Pharmacy Aurangabad",
+    "institute_code": "PH0006",
+    "district": "Aurangabad",
+    "type": "Pharmacy",
+    "courses": [
+      {
+        "course_name": "B.Pharm",
+        "seat_intake": 80,
+        "previous_cutoff": 85.0
+      },
+      {
+        "course_name": "D.Pharm",
+        "seat_intake": 60,
+        "previous_cutoff": 70.0
+      }
+    ]
+  },
+  {
+    "college_name": "Government College of Pharmacy Amravati",
+    "institute_code": "PH0007",
+    "district": "Amravati",
+    "type": "Pharmacy",
+    "courses": [
+      {
+        "course_name": "B.Pharm",
+        "seat_intake": 60,
+        "previous_cutoff": 78.0
+      },
+      {
+        "course_name": "D.Pharm",
+        "seat_intake": 60,
+        "previous_cutoff": 60.0
+      }
+    ]
+  },
+  {
+    "college_name": "Rajarambapu College of Pharmacy",
+    "institute_code": "PH0008",
+    "district": "Sangli",
+    "type": "Pharmacy",
+    "courses": [
+      {
+        "course_name": "B.Pharm",
+        "seat_intake": 60,
+        "previous_cutoff": 76.0
+      },
+      {
+        "course_name": "D.Pharm",
+        "seat_intake": 60,
+        "previous_cutoff": 58.0
+      }
+    ]
+  },
+  {
+    "college_name": "Y.B. Chavan College of Pharmacy",
+    "institute_code": "PH0009",
+    "district": "Nashik",
+    "type": "Pharmacy",
+    "courses": [
+      {
+        "course_name": "B.Pharm",
+        "seat_intake": 60,
+        "previous_cutoff": 74.0
+      },
+      {
+        "course_name": "D.Pharm",
+        "seat_intake": 60,
+        "previous_cutoff": 55.0
+      }
+    ]
+  },
+  {
+    "college_name": "Government College of Pharmacy Karad",
+    "institute_code": "PH0010",
+    "district": "Satara",
+    "type": "Pharmacy",
+    "courses": [
+      {
+        "course_name": "B.Pharm",
+        "seat_intake": 100,
+        "previous_cutoff": 82.0
+      },
+      {
+        "course_name": "D.Pharm",
+        "seat_intake": 60,
+        "previous_cutoff": 68.0
+      },
+      {
+        "course_name": "Pharm.D",
+        "seat_intake": 30,
+        "previous_cutoff": 90.0
+      }
+    ]
+  },
+  {
+    "college_name": "Dr. D.Y. Patil College of Pharmacy Navi Mumbai",
+    "institute_code": "PH0011",
+    "district": "Thane",
+    "type": "Pharmacy",
+    "courses": [
+      {
+        "course_name": "B.Pharm",
+        "seat_intake": 100,
+        "previous_cutoff": 79.0
+      },
+      {
+        "course_name": "D.Pharm",
+        "seat_intake": 60,
+        "previous_cutoff": 60.0
+      }
+    ]
+  },
+  {
+    "college_name": "SVKM's Dr. Bhanuben Nanavati College of Pharmacy",
+    "institute_code": "PH0012",
+    "district": "Mumbai",
+    "type": "Pharmacy",
+    "courses": [
+      {
+        "course_name": "B.Pharm",
+        "seat_intake": 60,
+        "previous_cutoff": 90.0
+      },
+      {
+        "course_name": "M.Pharm (Industrial Pharmacy)",
+        "seat_intake": 15,
+        "previous_cutoff": 82.0
+      }
+    ]
+  },
+  {
+    "college_name": "Government Polytechnic Mumbai",
+    "institute_code": "DP0001",
+    "district": "Mumbai",
+    "type": "Diploma",
+    "courses": [
+      {
+        "course_name": "Computer Engineering",
+        "seat_intake": 60,
+        "previous_cutoff": 92.0
+      },
+      {
+        "course_name": "Mechanical Engineering",
+        "seat_intake": 60,
+        "previous_cutoff": 85.0
+      },
+      {
+        "course_name": "Electronics & Telecom",
+        "seat_intake": 40,
+        "previous_cutoff": 80.0
+      }
+    ]
+  },
+  {
+    "college_name": "Government Polytechnic Pune",
+    "institute_code": "DP0002",
+    "district": "Pune",
+    "type": "Diploma",
+    "courses": [
+      {
+        "course_name": "Computer Engineering",
+        "seat_intake": 60,
+        "previous_cutoff": 90.0
+      },
+      {
+        "course_name": "Civil Engineering",
+        "seat_intake": 40,
+        "previous_cutoff": 75.0
+      }
+    ]
+  },
+  {
+    "college_name": "Shri Bhagubhai Mafatlal Polytechnic",
+    "institute_code": "DP0045",
+    "district": "Mumbai",
+    "type": "Diploma",
+    "courses": [
+      {
+        "course_name": "Information Technology",
+        "seat_intake": 60,
+        "previous_cutoff": 88.0
+      },
+      {
+        "course_name": "Electrical Engineering",
+        "seat_intake": 40,
+        "previous_cutoff": 78.0
+      }
+    ]
+  },
+  {
+    "college_name": "Government Polytechnic Nagpur",
+    "institute_code": "DP0003",
+    "district": "Nagpur",
+    "type": "Diploma",
+    "courses": [
+      {
+        "course_name": "Computer Engineering",
+        "seat_intake": 40,
+        "previous_cutoff": 82.0
+      },
+      {
+        "course_name": "Mechanical Engineering",
+        "seat_intake": 60,
+        "previous_cutoff": 70.0
+      }
+    ]
+  }
+]
