@@ -252,7 +252,7 @@ export const updateAptitudeScores = async (req, res) => {
             Return exactly ONE label from this list strictly based on best fit: [Science, Commerce, Arts, Engineering, Medical, Diploma, Fine Arts/Vocational]. No quotes or extra text.`;
 
             const aiRes = await axios.post('https://api.groq.com/openai/v1/chat/completions', {
-                model: 'gemma2-9b-it',
+                model: 'llama-3.1-8b-instant',
                 messages: [{ role: 'user', content: aiPrompt }],
                 temperature: 0.2, // Low temp for strict adherence
                 max_tokens: 15

@@ -44,7 +44,7 @@ router.post('/next-question', async (req, res) => {
         const response = await axios.post(
             GROQ_API_URL,
             {
-                model: 'gemma2-9b-it',
+                model: 'llama-3.1-8b-instant',
                 messages: [
                     { role: 'system', content: systemPrompt },
                     { role: 'user', content: 'Generate the next question.' }
@@ -101,7 +101,7 @@ router.post('/insight', async (req, res) => {
         const response = await axios.post(
             GROQ_API_URL,
             {
-                model: 'gemma2-9b-it',
+                model: 'llama-3.1-8b-instant',
                 messages: [{ role: 'system', content: systemPrompt }],
                 temperature: 0.5,
                 max_tokens: 150
@@ -147,7 +147,7 @@ router.post('/chat', async (req, res) => {
         const response = await axios.post(
             GROQ_API_URL,
             {
-                model: 'gemma2-9b-it',
+                model: 'llama-3.1-8b-instant',
                 messages: [
                     { role: 'system', content: systemPrompt },
                     { role: 'user', content: message }
