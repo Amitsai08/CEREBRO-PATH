@@ -21,7 +21,7 @@ export const AuthProvider = ({ children }) => {
           const parsedUser = JSON.parse(storedUser);
           setUser(parsedUser);
           
-          const res = await axios.get(`${API_URL}/students/${parsedUser.uid}`, {
+          const res = await axios.get(`${API_BASE_URL}/students/${parsedUser.uid}`, {
             headers: { Authorization: `Bearer ${storedToken}` }
           });
           
