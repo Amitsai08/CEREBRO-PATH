@@ -33,3 +33,11 @@ services:
       - type: rewrite
         source: /*
         destination: /index.html
+
+  # ML Recommendation Service (Flask/Python)
+  - type: web
+    name: cerebro-path-ml
+    env: python
+    plan: free
+    buildCommand: cd ml-service && pip install -r requirements.txt
+    startCommand: cd ml-service && gunicorn app:app
