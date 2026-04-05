@@ -5,6 +5,7 @@ const require = createRequire(import.meta.url);
 const pdf = require('pdf-parse');
 import axios from 'axios';
 import College from '../models/College.js';
+import Student from '../models/Student.js';
 import dotenv from 'dotenv';
 
 dotenv.config();
@@ -119,6 +120,40 @@ router.post('/bulk-save', async (req, res) => {
         res.json({ message: "Bulk save complete", inserted, updated });
     } catch (error) {
         res.status(500).json({ message: "Error saving data", error: error.message });
+    }
+});
+
+/**
+ * Get Analytics for Admin Dashboard
+ * GET /api/admin/analytics
+ */
+router.get('/analytics', async (req, res) => {
+    try {
+        const totalColleges = await College.countDocuments();
+        const totalStudents = await Student.countDocuments();
+
+        // Get distribution of colleges by district
+        const districtDistribution = await College.aggregate([
+            { $group: { _id: "$district", count: { $sum: 1 } } },
+            { $sort: { count: -1 } },
+            { $limit: 10 }
+        ]);
+
+        // Get distribution of predicted streams for students
+        const streamDistribution = await Student.aggregate([
+            { $group: { _id: "$prediction.recommended_path", count: { $sum: 1 } } },
+            { $sort: { count: -1 } }
+        ]);
+
+        res.json({
+            success: true,
+            totalColleges,
+            totalStudents,
+            districtDistribution: districtDistribution.map(d => ({ district: d._id || 'Unknown', count: d.count })),
+            streamDistribution: streamDistribution.map(s => ({ stream: s._id || 'Undecided', count: s.count }))
+        });
+    } catch (error) {
+        res.status(500).json({ message: "Error fetching analytics", error: error.message });
     }
 });
 
