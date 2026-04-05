@@ -159,14 +159,18 @@ export const createOrUpdateStudent = async (req, res) => {
       
       await student.save();
     } else {
-      // Create - double check that email isn't taken (unlikely but safe)
-      const emailCheck = await Student.findOne({ email });
-      if (emailCheck) {
-          // This should have been caught by the logic above, but just in case
-          emailCheck.uid = uid;
-          student = await emailCheck.save();
+      // Create - ONLY if password is provided (unlikely during profile update)
+      if (email && uid) {
+          const emailCheck = await Student.findOne({ email });
+          if (emailCheck) {
+              emailCheck.uid = uid;
+              student = await emailCheck.save();
+          } else {
+              // Return error instead of 500 if trying to 'create' without a password
+              return res.status(404).json({ message: 'User profile not found. Please register an account first.' });
+          }
       } else {
-          student = await Student.create({ uid, name, email, district, category, academic_info, interests, aptitude_scores, preferences });
+          return res.status(400).json({ message: 'Missing user identification (UID/Email).' });
       }
     }
     res.status(201).json({
@@ -252,21 +256,27 @@ export const updateAptitudeScores = async (req, res) => {
             - Academic: Class=${student.academic_info?.class_level}, Percentile=${percentile}%, Subjects=${student.academic_info?.subjects?.join(', ')}
             - Interests: Preferred Stream=${preferredStream}
             
-            Return exactly ONE label from this list strictly: [Science, Commerce, Arts, Engineering, Medical, Diploma, Fine Arts/Vocational]. No quotes.`;
+            Return exactly ONE label from this list strictly: [Science, Commerce, Arts, Engineering, Medical, Diploma, Fine Arts/Vocational]. No quotes.
+            
+            IMPORTANT: Also produce a warm, extremely supportive, and motivating 1-sentence career insight for this student. Avoid phrases like "have not yet explored". Focus on their potential.`;
 
             const aiRes = await axios.post('https://api.groq.com/openai/v1/chat/completions', {
                 model: 'llama-3.1-8b-instant',
                 messages: [{ role: 'user', content: aiPrompt }],
-                temperature: 0.2,
-                max_tokens: 15
+                temperature: 0.6,
+                max_tokens: 60
             }, { headers: { 'Authorization': `Bearer ${process.env.GROQ_API_KEY}` }, timeout: 4000 });
             
-            const aiLabel = aiRes.data.choices[0].message.content.trim().replace(/['"]/g, '');
+            const aiOutput = aiRes.data.choices[0].message.content.trim();
+            // Try to separate label from sentence if AI combines them (heuristic)
             const allowedLabels = ["Science", "Commerce", "Arts", "Engineering", "Medical", "Diploma", "Fine Arts/Vocational"];
+            const words = aiOutput.split(/\n| /);
+            const foundLabel = words.find(w => allowedLabels.includes(w.replace(/[.,]/g, '')));
             
-            if (allowedLabels.includes(aiLabel)) {
-                path = aiLabel;
-                insight = `Forecasting based on ${student.academic_info?.class_level || 'current'} profile and assessment metrics suggests ${path} is your optimal destination.`;
+            if (foundLabel) {
+                path = foundLabel;
+                insight = aiOutput.replace(foundLabel, '').trim() || `Forecasting metrics suggest ${path} is a fantastic destination for your unique talents!`;
+                if (insight.length < 10) insight = `With your profile, you have a bright future in ${path}—keep pushing toward your goals!`;
             }
         } catch (e) {
             console.error("Forecasting AI failure, falling back to heuristic", e.message);
